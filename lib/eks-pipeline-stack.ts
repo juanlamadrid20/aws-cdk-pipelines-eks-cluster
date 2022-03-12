@@ -1,12 +1,14 @@
 import * as cdk from "@aws-cdk/core";
 import eks = require("@aws-cdk/aws-eks");
 import * as ssm from "@aws-cdk/aws-ssm";
+
 import {
   CodePipeline,
   CodePipelineSource,
   ShellStep,
   ManualApprovalStep,
 } from "@aws-cdk/pipelines";
+
 import { EksClusterStage } from "./eks-cluster-stage";
 import { AppDnsStage } from "./app-dns-stage";
 
@@ -17,7 +19,7 @@ export class EksPipelineStack extends cdk.Stack {
     const pipeline = new CodePipeline(this, "Pipeline", {
       synth: new ShellStep("Synth", {
         input: CodePipelineSource.gitHub(
-          "aws-samples/aws-cdk-pipelines-eks-cluster",
+          "juanlamadrid20/aws-cdk-pipelines-eks-cluster",
           "main",
           {
             authentication:
